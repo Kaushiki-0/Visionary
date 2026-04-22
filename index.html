@@ -6,7 +6,7 @@
   <title>Visionary | Professional Workspace</title>
   <link rel="stylesheet" href="vision-styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600&family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&family=Mrs+Saint+Delafield&family=Italiana&family=DM+Serif+Display:ital@0;1&family=Cinzel:wght@400;600&family=Dancing+Script:wght@400;700&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
 </head>
 <body data-theme="minimalist">
 
@@ -25,6 +25,8 @@
         <div class="theme-dot midnight" data-theme="midnight" title="Midnight"></div>
         <div class="theme-dot rose" data-theme="rose" title="Rose Gold"></div>
         <div class="theme-dot forest" data-theme="forest" title="Forest"></div>
+        <div class="theme-dot lavender" data-theme="lavender" title="Lavender Dream"></div>
+        <div class="theme-dot blush" data-theme="blush" title="Blush & Cream"></div>
       </div>
 
       <div class="divider"></div>
@@ -35,12 +37,74 @@
 
       <div class="divider"></div>
 
-      <div class="section-label">Library</div>
-      <select id="libraryCategory" class="pro-select">
-        <option value="pictures">Inspiration Gallery</option>
-        <option value="templates">Text Templates</option>
-      </select>
+      <!-- ENHANCED LIBRARY TABS -->
+      <div class="section-label">Asset Library</div>
+      <div class="library-tabs">
+        <button class="lib-tab active" data-tab="pictures">📷 Photos</button>
+        <button class="lib-tab" data-tab="stickers">✨ Stickers</button>
+        <button class="lib-tab" data-tab="icons">🌸 Icons</button>
+        <button class="lib-tab" data-tab="templates">✍️ Quotes</button>
+      </div>
       <div id="libraryContent" class="library-container"></div>
+
+      <div class="divider"></div>
+
+      <!-- TEXT & AFFIRMATION TOOL -->
+      <details class="sidebar-details" id="affirmationPanel" open>
+        <summary>✨ Affirmation Studio</summary>
+        <div class="custom-panel">
+          <textarea id="affirmText" placeholder="Write your mantra..." class="pro-input" rows="2"></textarea>
+          <div class="section-label" style="margin-top:8px;">Font Style</div>
+          <div class="font-style-grid">
+            <div class="font-chip active" data-style="script" data-family="Mrs Saint Delafield">Script</div>
+            <div class="font-chip" data-style="serif" data-family="Playfair Display">Serif</div>
+            <div class="font-chip" data-style="cinzel" data-family="Cinzel">Classic</div>
+            <div class="font-chip" data-style="dancing" data-family="Dancing Script">Flowy</div>
+            <div class="font-chip" data-style="dm" data-family="DM Serif Display">Modern</div>
+            <div class="font-chip" data-style="italiana" data-family="Italiana">Italiana</div>
+          </div>
+          <div class="section-label" style="margin-top:8px;">Color</div>
+          <div class="color-swatch-row">
+            <div class="color-swatch active" data-color="accent" style="background:var(--accent)"></div>
+            <div class="color-swatch" data-color="#1a1714" style="background:#1a1714;border-color:#555"></div>
+            <div class="color-swatch" data-color="#8b5e83" style="background:#8b5e83"></div>
+            <div class="color-swatch" data-color="#c97b84" style="background:#c97b84"></div>
+            <div class="color-swatch" data-color="#6b8f71" style="background:#6b8f71"></div>
+            <div class="color-swatch" data-color="#d4a96a" style="background:#d4a96a"></div>
+            <div class="color-swatch" data-color="#7a6fa8" style="background:#7a6fa8"></div>
+          </div>
+          <div class="section-label" style="margin-top:8px;">Quick Affirmations</div>
+          <div class="quick-affirm-list" id="quickAffirmList"></div>
+          <button class="btn-ghost wide" id="addAffirmBtn" style="margin-top:8px;">Add to Canvas</button>
+        </div>
+      </details>
+
+      <div class="divider"></div>
+
+      <!-- REMIX FEATURE -->
+      <details class="sidebar-details" id="remixPanel">
+        <summary>🎨 Remix & Mood</summary>
+        <div class="custom-panel">
+          <p class="hint-text">Select items on canvas, then pick a remix mood to transform the layout & palette.</p>
+          <div class="section-label" style="margin-top:8px;">Mood Presets</div>
+          <div class="mood-grid">
+            <button class="mood-btn" data-mood="golden">🌅 Golden Hour</button>
+            <button class="mood-btn" data-mood="ethereal">🌸 Ethereal</button>
+            <button class="mood-btn" data-mood="bold">⚡ Bold & Brave</button>
+            <button class="mood-btn" data-mood="serene">🌿 Serene</button>
+            <button class="mood-btn" data-mood="romantic">🌹 Romantic</button>
+            <button class="mood-btn" data-mood="cosmic">🌙 Cosmic</button>
+          </div>
+          <div class="section-label" style="margin-top:8px;">Layout Variation</div>
+          <div class="layout-btns">
+            <button class="btn-ghost small" id="layoutScatter">Scatter</button>
+            <button class="btn-ghost small" id="layoutGrid">Grid</button>
+            <button class="btn-ghost small" id="layoutCascade">Cascade</button>
+            <button class="btn-ghost small" id="layoutDiagonal">Diagonal</button>
+          </div>
+          <button class="btn-gold wide" id="remixBtn" style="margin-top:10px;">✨ Remix Now</button>
+        </div>
+      </details>
 
       <div class="divider"></div>
 
@@ -48,8 +112,7 @@
         <summary>Custom Elements</summary>
         <div class="custom-panel">
           <input type="text" id="imgUrl" placeholder="Image URL..." class="pro-input" />
-          <textarea id="quoteText" placeholder="Your Mantra..." class="pro-input" rows="2"></textarea>
-          <button class="btn-ghost wide" id="addCustomBtn">Add to Canvas</button>
+          <button class="btn-ghost wide" id="addCustomBtn">Add Image</button>
         </div>
       </details>
     </div>
@@ -65,10 +128,13 @@
   <main id="main">
     <div id="workspaceInfo">
       <h1 id="boardNameDisplay">Project Untitled</h1>
-      <p class="workspace-hint">Drag items from Library and drop them here</p>
+      <p class="workspace-hint">Drag items from Library · Click to add · Remix to transform</p>
     </div>
     <div id="canvas"></div>
   </main>
+
+  <!-- Remix Toast -->
+  <div id="remixToast" class="remix-toast hidden">✨ Remixed!</div>
 
   <div id="overlay" class="hidden"></div>
   <div id="newBoardModal" class="modal hidden">
